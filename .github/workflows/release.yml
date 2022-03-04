@@ -46,6 +46,10 @@ jobs:
         if: matrix.os == 'ubuntu-18.04'
         run: echo "CGO_LDFLAGS=-no-pie" >> $GITHUB_ENV
 
+      - name: Configure CGO
+        if: matrix.arch == 'arm64'
+        run: echo "CGO_ENABLED=1" >> $GITHUB_ENV
+
       - name: Build WAL-G
         env:
           GOARCH: ${{ matrix.arch }}
